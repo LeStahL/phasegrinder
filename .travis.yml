@@ -1,0 +1,19 @@
+dist: bionic
+group: travis_latest
+
+os: windows
+language: c
+
+matrix:
+  include:
+    - env: CC=gcc
+    - env: CC=clang
+    - env: CC=msvc
+
+install:
+  - pip install meson ninja
+
+script:
+  - meson builddir
+  - meson compile -C builddir
+  - meson test -C builddir
